@@ -1,50 +1,67 @@
-# Welcome to your Expo app 👋
+# Fokus - Aplicativo de Gestão de Tempo
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Fokus é um aplicativo de gestão de tempo baseado na técnica Pomodoro, desenvolvido com **React Native** e **Expo**. Ele permite que você gerencie seu tempo de forma eficiente, ajudando a manter o foco nas suas tarefas. O aplicativo conta com um cronômetro regressivo, um botão funcional para iniciar e parar a contagem, além de um efeito visual no fundo para indicar o tempo restante.
 
-## Get started
+Este projeto foi desenvolvido como parte do curso [React Native: Desenvolvendo um aplicativo com Expo](https://cursos.alura.com.br/course/react-native-desenvolvendo-expo) da Alura.
 
-1. Install dependencies
+## 🚀 Tecnologias Utilizadas
 
-   ```bash
-   npm install
-   ```
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
+- [React Hooks (useState)](https://react.dev/reference/react/useState)
+- [StyleSheet](https://reactnative.dev/docs/stylesheet)
+- [Flexbox](https://reactnative.dev/docs/flexbox)
+- [SVG Icons](https://reactnative.dev/docs/image)
 
-2. Start the app
+## 📱 Desenvolvimento passo a passo realizado
 
-   ```bash
-    npx expo start
-   ```
+✅ Criar e rodar projetos React Native Expo<br>
+✅ Estilização de layouts utilizando StyleSheet<br>
+✅ Implementação de componentes básicos como **Image**, **View** e **Text**<br>
+✅ Botão interativo para iniciar e parar o cronômetro<br>
+✅ Cronômetro regressivo funcional<br>
+✅ Manipulação de estado com **useState**<br>
+✅ Trabalhar com listas utilizando **.map** e **props**<br>
+✅ Efeito visual dinâmico conforme o tempo diminui<br>
 
-In the output, you'll find options to open the app in a
+## 🎨 Capturas de Tela
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+![Fokus App Screenshot](assets/images/ScreenshotFokus.png)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🛠️ Como Executar o Projeto
 
-## Get a fresh project
+Para rodar este projeto localmente, siga os passos abaixo:
 
-When you're ready, run:
+### 1️⃣ Pré-requisitos
 
-```bash
-npm run reset-project
+Certifique-se de ter instalado:
+- Node.js
+- Expo CLI (`npm install -g expo-cli`)
+- Emulador ou dispositivo físico com Expo Go
+
+### 2️⃣ Clonar o Repositório
+```sh
+ git clone https://github.com/TalesCostta/fokus-expo-course-alura.git
+ cd fokus-expo-course-alura
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 3️⃣ Instalar Dependências
+```sh
+ npm install
+```
 
-## Learn more
+### 4️⃣ Executar o Aplicativo
+```sh
+ expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+Escaneie o QR Code com o aplicativo **Expo Go** para rodar no celular ou use um emulador.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 📜 Licença
 
-## Join the community
+Este projeto está sob a licença MIT. Sinta-se à vontade para contribuir! 🧑‍💻
 
-Join our community of developers creating universal apps.
+---
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Feito com ❤️ durante o curso de React Native! 🚀
+

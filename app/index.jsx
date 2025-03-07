@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { Image, StyleSheet, Text, View, Pressable } from "react-native";
+import { useRef, useState, useEffect } from "react";
+import { Image, StyleSheet, Text, View, Animated } from "react-native";
 import { FokusButton } from "../components/FokusButton";
 import { ActionButton } from "../components/ActionButton";
 import { Timer } from "../components/Timer";
@@ -27,15 +27,40 @@ const pomodoro = [
   },
 ]
 
+
 export default function Index() {
   const [timerType, setTimerType] = useState(pomodoro[0]);
-  const [seconds, setSeconds ] = useState(pomodoro[0].initialValue)
+  const [seconds, setSeconds] = useState(pomodoro[0].initialValue)
   const [timerRunning, setTimerRunning] = useState(false)
+
+  const backgroundAnim = useRef(new Animated.Value(0)).current;
 
   const timerRef = useRef(null);
 
+  const startBackgroundAnimation = () => {
+    return Animated.loop(
+      Animated.sequence([
+        Animated.timing(backgroundAnim, {
+          toValue: 1,
+          duration: 1500,
+          useNativeDriver: false,
+        }),
+        Animated.timing(backgroundAnim, {
+          toValue: 0,
+          duration: 1500,
+          useNativeDriver: false,
+        }),
+      ])
+    );
+  };
+
+  const animatedBackgroundColor = backgroundAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['#021123', '#06214a'] 
+  });
+
   const clear = () => {
-    if (timerRef.current != null){
+    if (timerRef.current != null) {
       clearInterval(timerRef.current);
       timerRef.current = null;
       setTimerRunning(false);
@@ -49,7 +74,7 @@ export default function Index() {
   }
 
   const toggleTimer = () => {
-    if(timerRef.current){
+    if (timerRef.current) {
       clear();
       return
     }
@@ -58,7 +83,7 @@ export default function Index() {
 
     const id = setInterval(() => {
       setSeconds(oldState => {
-        if (oldState === 0){
+        if (oldState === 0) {
           clear()
           return timerType.initialValue
         }
@@ -67,9 +92,27 @@ export default function Index() {
     }, 1000)
     timerRef.current = id;
   }
+
+  useEffect(() => {
+    let animation;
+    if (timerRunning) {
+      animation = startBackgroundAnimation();
+      animation.start();
+    } else {
+      backgroundAnim.setValue(0);
+    }
+
+    return () => animation?.stop();
+  }, [timerRunning]);
+
   return (
-    <View
-      style={styles.container}>
+    <View style={styles.container}>
+      <Animated.View
+        style={[
+          styles.animatedBackground,
+          { backgroundColor: animatedBackgroundColor }
+        ]}
+      />
       <Image source={timerType.image} style={{ height: 280, width: 280 }} />
       <View style={styles.actions}>
         <View style={styles.context}>
@@ -83,10 +126,11 @@ export default function Index() {
           ))}
         </View>
         <Timer totalSeconds={seconds} />
-        <FokusButton 
-        title={timerRunning ? 'Pausar' : 'Começar'}
-        icon={timerRunning ? <IconPause /> : <IconPlay />}
-        onPress={toggleTimer}/>
+        <FokusButton
+          title={timerRunning ? 'Pausar' : 'Começar'}
+          icon={timerRunning ? <IconPause /> : <IconPlay />}
+          onPress={toggleTimer}
+        />
       </View>
       <View style={styles.footer}>
         <Text style={styles.footerText}>
@@ -98,6 +142,7 @@ export default function Index() {
       </View>
     </View>
   );
+
 }
 
 const styles = StyleSheet.create({
@@ -107,6 +152,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: '#021123',
     gap: 40,
+  },
+  animatedBackground: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
   },
   actions: {
     paddingVertical: 24,
